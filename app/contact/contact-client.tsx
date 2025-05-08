@@ -1,125 +1,99 @@
 'use client';
 
+/* eslint-disable react/no-unescaped-entities */
+
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
 
 export default function ContactClient() {
   const searchParams = useSearchParams();
-  const subjectFromQuery = searchParams.get('subject') || '';
-
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: '',
-  });
-
-  const [showConfirmation, setShowConfirmation] = useState(false);
+  const [status, setStatus] = useState<'idle' | 'submitting' | 'submitted'>('idle');
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
+  const [submittedMessage, setSubmittedMessage] = useState('');
 
   useEffect(() => {
-    if (subjectFromQuery) {
-      setFormData((prev) => ({ ...prev, subject: decodeURIComponent(subjectFromQuery) }));
+    const success = searchParams.get('success');
+    if (success === 'true') {
+      setSubmittedMessage('Thank you! Your message has been sent.');
     }
-  }, [subjectFromQuery]);
+  }, [searchParams]);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setShowConfirmation(true);
-    setFormData({ name: '', email: '', subject: '', message: '' });
-    setTimeout(() => setShowConfirmation(false), 6000);
+    setStatus('submitting');
+
+    try {
+      await new Promise((resolve) => setTimeout(resolve, 1000)); // Simulate delay
+      setStatus('submitted');
+      setEmail('');
+      setMessage('');
+      setSubmittedMessage('Thank you! Your message has been sent.');
+    } catch (err) {
+      console.error('Submission failed', err);
+      setStatus('idle');
+    }
   };
 
   return (
-    <>
-      <section className="py-20 bg-gray-50 text-center">
-        <h1 className="text-4xl font-semibold mb-6">Contact Me</h1>
-        <p className="text-lg max-w-3xl mx-auto mb-6">
-          I&apos;m here to assist you on your transformation journey. Please fill out the form below, and I&apos;ll get back to you as soon as possible.
+    <section className="min-h-screen py-20 bg-white text-center px-6 md:px-12">
+      <div className="max-w-3xl mx-auto">
+        <h1 className="text-4xl md:text-5xl font-bold mb-6">Contact Me</h1>
+        <p className="text-lg text-gray-700 mb-10">
+          I&apos;m here if you&apos;re ready to begin your journey. Send a message and I&apos;ll get back to you shortly.
         </p>
-      </section>
 
-      <section className="py-20">
-        <div className="max-w-3xl mx-auto bg-white p-8 rounded-lg shadow-lg">
-          <form onSubmit={handleSubmit}>
-            <div className="mb-6">
-              <label className="block text-sm font-semibold mb-2" htmlFor="name">
-                Name
-              </label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                className="w-full px-4 py-2 border border-gray-300 rounded-md"
-                required
-              />
-            </div>
+        {submittedMessage && (
+          <div className="mb-6 p-4 bg-green-100 text-green-700 rounded">
+            {submittedMessage}
+          </div>
+        )}
 
-            <div className="mb-6">
-              <label className="block text-sm font-semibold mb-2" htmlFor="email">
-                Email Address
-              </label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                className="w-full px-4 py-2 border border-gray-300 rounded-md"
-                required
-              />
-            </div>
+        <form
+          onSubmit={handleSubmit}
+          className="bg-gray-50 p-6 rounded shadow space-y-6 max-w-xl mx-auto"
+        >
+          <div>
+            <label htmlFor="email" className="block text-left font-medium text-gray-700 mb-1">
+              Email
+            </label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500"
+              placeholder="Your email address"
+            />
+          </div>
 
-            <div className="mb-6">
-              <label className="block text-sm font-semibold mb-2" htmlFor="subject">
-                Subject
-              </label>
-              <input
-                type="text"
-                id="subject"
-                name="subject"
-                value={formData.subject}
-                onChange={handleChange}
-                className="w-full px-4 py-2 border border-gray-300 rounded-md"
-                required
-              />
-            </div>
+          <div>
+            <label htmlFor="message" className="block text-left font-medium text-gray-700 mb-1">
+              Message
+            </label>
+            <textarea
+              id="message"
+              name="message"
+              required
+              rows={5}
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+              className="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500"
+              placeholder="Write your message here..."
+            />
+          </div>
 
-            <div className="mb-6">
-              <label className="block text-sm font-semibold mb-2" htmlFor="message">
-                Message
-              </label>
-              <textarea
-                id="message"
-                name="message"
-                value={formData.message}
-                onChange={handleChange}
-                className="w-full px-4 py-2 border border-gray-300 rounded-md"
-                rows={4}
-                required
-              />
-            </div>
-
-            <button
-              type="submit"
-              className="w-full bg-orange-500 hover:bg-orange-600 text-white py-3 px-6 rounded-md font-semibold transition"
-            >
-              Send Message
-            </button>
-          </form>
-
-          {showConfirmation && (
-            <div className="mt-6 bg-green-100 text-green-800 px-6 py-4 rounded-md shadow-md transition duration-300">
-              ✅ Thank you! Your message has been sent successfully.
-            </div>
-          )}
-        </div>
-      </section>
-    </>
+          <button
+            type="submit"
+            disabled={status === 'submitting'}
+            className="bg-orange-500 hover:bg-orange-400 text-white font-semibold px-6 py-2 rounded transition disabled:opacity-50"
+          >
+            {status === 'submitting' ? 'Sending...' : 'Send Message'}
+          </button>
+        </form>
+      </div>
+    </section>
   );
 }
