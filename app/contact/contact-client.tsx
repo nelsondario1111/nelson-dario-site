@@ -1,7 +1,5 @@
 'use client';
 
-/* eslint-disable react/no-unescaped-entities */
-
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
 
@@ -39,6 +37,7 @@ export default function ContactClient() {
     <section className="min-h-screen py-20 bg-white text-center px-6 md:px-12">
       <div className="max-w-3xl mx-auto">
         <h1 className="text-4xl md:text-5xl font-bold mb-6">Contact Me</h1>
+        {/* eslint-disable-next-line react/no-unescaped-entities */}
         <p className="text-lg text-gray-700 mb-10">
           I&apos;m here if you&apos;re ready to begin your journey. Send a message and I&apos;ll get back to you shortly.
         </p>
