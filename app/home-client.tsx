@@ -16,7 +16,7 @@ export default function HomeClient() {
             Transform Your Life and Business
           </h1>
           <p className="text-lg md:text-xl max-w-2xl mb-8">
-            I provide personalized coaching, conscious design, and spiritual tools to help you align with your true potential and create the life and business you’ve always desired.
+            I provide personalized coaching, conscious design, and spiritual tools to help you align with your true potential and create the life and business you&apos;ve always desired.
           </p>
           <Link
             href="/services"
@@ -35,7 +35,7 @@ export default function HomeClient() {
             <div className="bg-gray-100 p-6 rounded-lg shadow hover:shadow-lg transition">
               <h3 className="text-2xl font-semibold mb-4">Empower Your Life</h3>
               <p className="text-base mb-6">
-                Get clarity, unlock potential, and achieve the life you’ve always desired.
+                Get clarity, unlock potential, and achieve the life you&apos;ve always desired.
               </p>
               <Link
                 href="/explore-life-empowerment"

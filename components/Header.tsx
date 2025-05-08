@@ -2,102 +2,85 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useState } from 'react';
-import { FiMenu, FiX } from 'react-icons/fi';
+import { FaInstagram, FaFacebook, FaLinkedin, FaYoutube } from 'react-icons/fa';
 
-const routeMap: Record<string, string> = {
-  '/': '/es',
-  '/about': '/es/sobre-mi',
-  '/services': '/es/servicios',
-  '/contact': '/es/contacto',
-  '/explore-life-empowerment': '/es/explora-empoderamiento-de-vida',
-  '/explore-business-empowerment': '/es/explora-empoderamiento-empresarial',
-  '/es': '/',
-  '/es/sobre-mi': '/about',
-  '/es/servicios': '/services',
-  '/es/contacto': '/contact',
-  '/es/explora-empoderamiento-de-vida': '/explore-life-empowerment',
-  '/es/explora-empoderamiento-empresarial': '/explore-business-empowerment',
-};
-
-export default function Header(): JSX.Element {
+export default function Footer(): JSX.Element {
   const pathname = usePathname();
   const isSpanish = pathname.startsWith('/es');
-  const [menuOpen, setMenuOpen] = useState(false);
-  const toggleMenu = (): void => setMenuOpen(!menuOpen);
-
-  const languageLink = routeMap[pathname] || (isSpanish ? '/' : '/es');
 
   return (
-    <header className="bg-black text-white shadow-md sticky top-0 z-50">
-      <div className="flex items-center justify-between max-w-7xl mx-auto px-4 py-4">
+    <footer className="bg-black text-white mt-20">
+      <div className="max-w-7xl mx-auto px-6 py-12 space-y-10 text-center">
         {/* Logo */}
-        <Link href="/" className="flex items-center">
-          <img
-            src="/logo.png"
-            alt="Nelson Dario Logo"
-            className="h-10 w-auto"
-            loading="lazy"
-          />
-          <span className="ml-3 text-2xl font-bold">Nelson Dario</span>
-        </Link>
+        <div className="text-2xl font-bold tracking-wide">NELSON DARIO</div>
 
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-6">
-          <Link href={isSpanish ? '/es' : '/'} className="hover:text-orange-500">
+        {/* Navigation Links */}
+        <div className="flex justify-center flex-wrap gap-6 text-gray-400 text-sm">
+          <Link href={isSpanish ? '/es' : '/'} className="hover:text-yellow-500">
             {isSpanish ? 'Inicio' : 'Home'}
           </Link>
-          <Link href={isSpanish ? '/es/sobre-mi' : '/about'} className="hover:text-orange-500">
+          <Link href={isSpanish ? '/es/sobre-mi' : '/about'} className="hover:text-yellow-500">
             {isSpanish ? 'Sobre Mí' : 'About'}
           </Link>
-          <Link href={isSpanish ? '/es/servicios' : '/services'} className="hover:text-orange-500">
+          <Link href={isSpanish ? '/es/servicios' : '/services'} className="hover:text-yellow-500">
             {isSpanish ? 'Servicios' : 'Services'}
           </Link>
-          <Link href={isSpanish ? '/es/contacto' : '/contact'} className="hover:text-orange-500">
+          <Link href={isSpanish ? '/es/contacto' : '/contact'} className="hover:text-yellow-500">
             {isSpanish ? 'Contacto' : 'Contact'}
-          </Link>
-          <Link
-            href={languageLink}
-            className="bg-orange-500 hover:bg-orange-400 text-white px-3 py-1 rounded"
-          >
-            {isSpanish ? 'EN' : 'ES'}
-          </Link>
-        </nav>
-
-        {/* Mobile Menu Toggle */}
-        <button
-          onClick={toggleMenu}
-          className="md:hidden text-2xl"
-          aria-label={menuOpen ? 'Close menu' : 'Open menu'}
-        >
-          {menuOpen ? <FiX /> : <FiMenu />}
-        </button>
-      </div>
-
-      {/* Mobile Navigation */}
-      {menuOpen && (
-        <div className="md:hidden bg-black px-4 pb-6 space-y-4 text-center">
-          <Link href={isSpanish ? '/es' : '/'} className="block hover:text-orange-500" onClick={toggleMenu}>
-            {isSpanish ? 'Inicio' : 'Home'}
-          </Link>
-          <Link href={isSpanish ? '/es/sobre-mi' : '/about'} className="block hover:text-orange-500" onClick={toggleMenu}>
-            {isSpanish ? 'Sobre Mí' : 'About'}
-          </Link>
-          <Link href={isSpanish ? '/es/servicios' : '/services'} className="block hover:text-orange-500" onClick={toggleMenu}>
-            {isSpanish ? 'Servicios' : 'Services'}
-          </Link>
-          <Link href={isSpanish ? '/es/contacto' : '/contact'} className="block hover:text-orange-500" onClick={toggleMenu}>
-            {isSpanish ? 'Contacto' : 'Contact'}
-          </Link>
-          <Link
-            href={languageLink}
-            onClick={toggleMenu}
-            className="bg-orange-500 hover:bg-orange-400 text-white px-3 py-1 rounded inline-block mt-2"
-          >
-            {isSpanish ? 'EN' : 'ES'}
           </Link>
         </div>
-      )}
-    </header>
+
+        {/* Newsletter */}
+        <div className="max-w-md mx-auto">
+          <h3 className="text-lg font-semibold mb-2">
+            {isSpanish ? 'Suscríbete al boletín' : 'Subscribe to the newsletter'}
+          </h3>
+          <form
+            onSubmit={(e: React.FormEvent<HTMLFormElement>) => {
+              e.preventDefault();
+              alert(isSpanish ? '¡Gracias por suscribirte!' : 'Thank you for subscribing!');
+            }}
+            className="flex flex-col md:flex-row items-center gap-3 justify-center"
+          >
+            <input
+              id="newsletter"
+              name="newsletter"
+              type="email"
+              aria-label="Email"
+              placeholder={isSpanish ? 'Tu correo electrónico' : 'Your email address'}
+              className="w-full px-4 py-2 rounded-md text-black border border-gray-300"
+              required
+            />
+            <button
+              type="submit"
+              className="bg-yellow-500 text-black font-semibold px-6 py-2 rounded hover:bg-yellow-400 transition"
+            >
+              {isSpanish ? 'Enviar' : 'Subscribe'}
+            </button>
+          </form>
+        </div>
+
+        {/* Social Media Icons */}
+        <div className="flex justify-center gap-6 text-2xl text-gray-400">
+          <a href="https://www.instagram.com/nelsondario" aria-label="Instagram" target="_blank" rel="noopener noreferrer" className="hover:text-yellow-500">
+            <FaInstagram />
+          </a>
+          <a href="https://www.facebook.com/nelsondario" aria-label="Facebook" target="_blank" rel="noopener noreferrer" className="hover:text-yellow-500">
+            <FaFacebook />
+          </a>
+          <a href="https://www.linkedin.com/in/nelsondario" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer" className="hover:text-yellow-500">
+            <FaLinkedin />
+          </a>
+          <a href="https://www.youtube.com/@nelsondario" aria-label="YouTube" target="_blank" rel="noopener noreferrer" className="hover:text-yellow-500">
+            <FaYoutube />
+          </a>
+        </div>
+
+        {/* Copyright */}
+        <div className="text-xs text-gray-500">
+          © {new Date().getFullYear()} Nelson Dario. All rights reserved.
+        </div>
+      </div>
+    </footer>
   );
 }
