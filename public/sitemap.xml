@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+>
+  <!-- English Pages -->
+  <url><loc>https://www.nelsondario.com/</loc></url>
+  <url><loc>https://www.nelsondario.com/about</loc></url>
+  <url><loc>https://www.nelsondario.com/services</loc></url>
+  <url><loc>https://www.nelsondario.com/contact</loc></url>
+  <url><loc>https://www.nelsondario.com/explore-life-empowerment</loc></url>
+  <url><loc>https://www.nelsondario.com/explore-business-empowerment</loc></url>
+
+  <!-- Spanish Pages -->
+  <url><loc>https://www.nelsondario.com/es</loc></url>
+  <url><loc>https://www.nelsondario.com/es/sobre-mi</loc></url>
+  <url><loc>https://www.nelsondario.com/es/servicios</loc></url>
+  <url><loc>https://www.nelsondario.com/es/contacto</loc></url>
+  <url><loc>https://www.nelsondario.com/es/explora-empoderamiento-de-vida</loc></url>
+  <url><loc>https://www.nelsondario.com/es/explora-empoderamiento-empresarial</loc></url>
+</urlset>
