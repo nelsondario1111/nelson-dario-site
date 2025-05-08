@@ -38,7 +38,7 @@ export default function ContactClient() {
       <section className="py-20 bg-gray-50 text-center">
         <h1 className="text-4xl font-semibold mb-6">Contact Me</h1>
         <p className="text-lg max-w-3xl mx-auto mb-6">
-          I'm here to assist you on your transformation journey. Please fill out the form below, and I’ll get back to you as soon as possible.
+          I&apos;m here to assist you on your transformation journey. Please fill out the form below, and I&apos;ll get back to you as soon as possible.
         </p>
       </section>
 
