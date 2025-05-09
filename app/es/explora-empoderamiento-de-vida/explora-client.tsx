@@ -79,9 +79,9 @@ export default function ExploreLifeEmpowermentClientEs() {
         <div className="mt-12 bg-white p-8 rounded-lg shadow-lg text-left">
           <h3 className="text-2xl font-semibold mb-4 text-center">✨ Complementos</h3>
           <ul className="list-disc pl-6 text-lg text-gray-700 space-y-2">
-            <li>Sesión adicional de hipnosis QHHT — <strong>$333</strong></li>
-            <li>Sesión extra de coaching — <strong>$150</strong></li>
-            <li>Exploración profunda de Diseño Humano — <strong>$197</strong></li>
+            <li>Sesión adicional de hipnosis QHHT — <strong>$333 CAD</strong></li>
+            <li>Sesión extra de coaching — <strong>$150 CAD</strong></li>
+            <li>Exploración profunda de Diseño Humano — <strong>$197 CAD</strong></li>
           </ul>
         </div>
       </div>
