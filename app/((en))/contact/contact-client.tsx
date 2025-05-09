@@ -5,13 +5,23 @@ import { useSearchParams } from 'next/navigation';
 
 export default function ContactClient() {
   const searchParams = useSearchParams();
+
   const [status, setStatus] = useState<'idle' | 'submitting' | 'submitted'>('idle');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
+  const [subject, setSubject] = useState('');
   const [submittedMessage, setSubmittedMessage] = useState('');
 
   useEffect(() => {
+    const subjectParam = searchParams.get('subject');
     const success = searchParams.get('success');
+
+    if (subjectParam) {
+      const decoded = decodeURIComponent(subjectParam);
+      setSubject(decoded);
+      setMessage(`Package of interest: ${decoded}\n\n`);
+    }
+
     if (success === 'true') {
       setSubmittedMessage('Thank you! Your message has been sent.');
     }
@@ -22,7 +32,8 @@ export default function ContactClient() {
     setStatus('submitting');
 
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1000)); // Simulate delay
+      // Simulate form submission delay
+      await new Promise((resolve) => setTimeout(resolve, 1000));
       setStatus('submitted');
       setEmail('');
       setMessage('');
@@ -34,26 +45,29 @@ export default function ContactClient() {
   };
 
   return (
-    <section className="min-h-screen py-20 bg-white text-center px-6 md:px-12">
-      <div className="max-w-3xl mx-auto">
+    <section
+      className="flex items-center justify-center px-6 py-20 md:py-32 bg-white text-center"
+      aria-label="Contact section"
+    >
+      <div className="max-w-xl w-full">
         <h1 className="text-4xl md:text-5xl font-bold mb-6">Contact Me</h1>
-        {/* eslint-disable-next-line react/no-unescaped-entities */}
         <p className="text-lg text-gray-700 mb-10">
-          I&apos;m here if you&apos;re ready to begin your journey. Send a message and I&apos;ll get back to you shortly.
+          I&apos;m here to support your transformation. Send me a message and I&apos;ll respond as soon as possible.
         </p>
 
         {submittedMessage && (
-          <div className="mb-6 p-4 bg-green-100 text-green-700 rounded">
+          <div className="mb-6 p-4 bg-green-100 text-green-700 rounded shadow text-sm font-medium">
             {submittedMessage}
           </div>
         )}
 
         <form
           onSubmit={handleSubmit}
-          className="bg-gray-50 p-6 rounded shadow space-y-6 max-w-xl mx-auto"
+          aria-label="Contact form"
+          className="space-y-6 text-left bg-gray-50 p-6 rounded shadow"
         >
           <div>
-            <label htmlFor="email" className="block text-left font-medium text-gray-700 mb-1">
+            <label htmlFor="email" className="block font-medium text-gray-700 mb-1">
               Email
             </label>
             <input
@@ -61,25 +75,27 @@ export default function ContactClient() {
               name="email"
               type="email"
               required
+              aria-describedby="email-description"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500"
+              className="w-full border border-gray-300 rounded px-4 py-3 focus:outline-none focus:ring-2 focus:ring-orange-500"
               placeholder="Your email address"
             />
           </div>
 
           <div>
-            <label htmlFor="message" className="block text-left font-medium text-gray-700 mb-1">
+            <label htmlFor="message" className="block font-medium text-gray-700 mb-1">
               Message
             </label>
             <textarea
               id="message"
               name="message"
               required
-              rows={5}
+              rows={6}
+              aria-describedby="message-description"
               value={message}
               onChange={(e) => setMessage(e.target.value)}
-              className="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500"
+              className="w-full border border-gray-300 rounded px-4 py-3 focus:outline-none focus:ring-2 focus:ring-orange-500"
               placeholder="Write your message here..."
             />
           </div>
@@ -87,7 +103,7 @@ export default function ContactClient() {
           <button
             type="submit"
             disabled={status === 'submitting'}
-            className="bg-orange-500 hover:bg-orange-400 text-white font-semibold px-6 py-2 rounded transition disabled:opacity-50"
+            className="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 px-6 rounded transition disabled:opacity-60"
           >
             {status === 'submitting' ? 'Sending...' : 'Send Message'}
           </button>

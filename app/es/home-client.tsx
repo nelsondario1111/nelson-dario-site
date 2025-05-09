@@ -1,14 +1,25 @@
 'use client';
 
+import { useState } from 'react';
 import Link from 'next/link';
 
 export default function HomeClientEs() {
+  const [subscribed, setSubscribed] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setSubscribed(true);
+    setTimeout(() => setSubscribed(false), 5000);
+  };
+
   return (
-    <main>
+    <>
       {/* Hero Section */}
       <section
         className="relative min-h-screen bg-cover bg-center"
         style={{ backgroundImage: "url('/sunpicture.png')" }}
+        role="img"
+        aria-label="Fondo espiritual con sol"
       >
         <div className="absolute inset-0 bg-black opacity-50" />
         <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4 text-center text-white">
@@ -22,13 +33,13 @@ export default function HomeClientEs() {
             href="/es/servicios"
             className="bg-white text-black py-3 px-8 rounded-lg font-semibold hover:bg-gray-200 transition"
           >
-            Ir
+            Ver Servicios
           </Link>
         </div>
       </section>
 
       {/* Empowerment Section */}
-      <section className="text-center py-20 bg-white px-6">
+      <section className="text-center py-20 bg-white px-6" aria-label="Opciones de empoderamiento">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-3xl font-bold mb-10">Cómo Puedo Ayudarte</h2>
           <div className="grid gap-8 md:grid-cols-2">
@@ -47,7 +58,7 @@ export default function HomeClientEs() {
             <div className="bg-gray-100 p-6 rounded-lg shadow hover:shadow-lg transition">
               <h3 className="text-2xl font-semibold mb-4">Empodera Tu Negocio</h3>
               <p className="text-base mb-6">
-                Desarrolla una marca auténtica y estrategia digital alineada con tu propósito.
+                Desarrolla una marca auténtica y una estrategia digital alineada con tu propósito.
               </p>
               <Link
                 href="/es/explora-empoderamiento-empresarial"
@@ -61,20 +72,20 @@ export default function HomeClientEs() {
       </section>
 
       {/* Newsletter Section */}
-      <section className="bg-gray-100 py-16 px-6 text-center">
+      <section className="bg-gray-100 py-16 px-6 text-center" aria-label="Suscripción al boletín">
         <div className="max-w-xl mx-auto">
           <h2 className="text-3xl font-bold mb-4">Suscríbete al Boletín</h2>
           <p className="text-gray-700 mb-6">
             Recibe consejos, actualizaciones y herramientas para tu camino consciente directamente en tu bandeja de entrada.
           </p>
+
           <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              alert('¡Gracias por suscribirte!');
-            }}
+            onSubmit={handleSubmit}
             className="flex flex-col md:flex-row items-center justify-center gap-4"
+            aria-label="Formulario de suscripción"
           >
             <input
+              name="email"
               type="email"
               placeholder="Tu correo electrónico"
               className="w-full md:w-auto px-4 py-3 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-400"
@@ -82,13 +93,20 @@ export default function HomeClientEs() {
             />
             <button
               type="submit"
-              className="bg-orange-500 text-white px-6 py-3 rounded hover:bg-orange-600 transition"
+              disabled={subscribed}
+              className="bg-orange-500 text-white px-6 py-3 rounded hover:bg-orange-600 transition disabled:opacity-60"
             >
-              Suscribirme
+              {subscribed ? '¡Suscrito!' : 'Suscribirme'}
             </button>
           </form>
+
+          {subscribed && (
+            <p className="mt-4 text-green-500 text-sm font-medium">
+              ¡Gracias por suscribirte!
+            </p>
+          )}
         </div>
       </section>
-    </main>
+    </>
   );
 }

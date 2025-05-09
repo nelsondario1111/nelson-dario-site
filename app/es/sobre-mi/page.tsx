@@ -5,6 +5,6 @@ export const metadata = {
   description: 'Conoce a Nelson Dario y su enfoque en diseño consciente, coaching personalizado y herramientas espirituales.',
 };
 
-export default function AboutPageEs(): JSX.Element {
+export default function AboutPageEs() {
   return <AboutClientEs />;
 }

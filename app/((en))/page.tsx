@@ -6,6 +6,6 @@ export const metadata = {
     'Welcome to Nelson Dario – services and insights to awaken, empower, and evolve your life and business.',
 };
 
-export default function HomePage(): JSX.Element {
+export default function HomePage() {
   return <HomeClient />;
 }

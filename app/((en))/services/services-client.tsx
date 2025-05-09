@@ -2,44 +2,44 @@
 
 import Link from 'next/link';
 
-export default function ServiciosClient() {
+export default function ServicesClient() {
   return (
     <section
       className="min-h-screen py-20 bg-white text-center px-6 md:px-12"
-      aria-label="Servicios ofrecidos por Nelson Dario"
+      aria-label="Service Packages"
     >
       <div className="max-w-5xl mx-auto">
-        <h1 className="text-4xl md:text-5xl font-bold mb-4">Mis Servicios</h1>
+        <h1 className="text-4xl md:text-5xl font-bold mb-4">My Services</h1>
         <p className="text-lg text-gray-700 mb-10">
-          Diseño consciente, coaching y herramientas espirituales para transformar tu vida y negocio.
+          Conscious designs, coaching, and spiritual tools to transform your life and business.
         </p>
 
         <div className="grid md:grid-cols-2 gap-10">
-          {/* Empoderamiento de Vida */}
+          {/* Life Empowerment */}
           <div className="bg-gray-50 p-8 rounded-lg shadow hover:shadow-lg transition">
-            <h2 className="text-2xl font-semibold mb-4">Empodera Tu Vida</h2>
+            <h2 className="text-2xl font-semibold mb-4">Empower Your Life</h2>
             <p className="text-gray-700 mb-6">
-              Sesiones de coaching y despertar personal para tu crecimiento, sanación y transformación.
+              Coaching and awakening services tailored for your personal growth, healing, and transformation.
             </p>
             <Link
-              href="/es/explora-empoderamiento-de-vida"
+              href="/explore-life-empowerment"
               className="inline-block px-6 py-3 bg-orange-500 text-white font-semibold rounded hover:bg-orange-600 transition"
             >
-              Explorar
+              Explore Life Empowerment
             </Link>
           </div>
 
-          {/* Empoderamiento Empresarial */}
+          {/* Business Empowerment */}
           <div className="bg-gray-50 p-8 rounded-lg shadow hover:shadow-lg transition">
-            <h2 className="text-2xl font-semibold mb-4">Empodera Tu Negocio</h2>
+            <h2 className="text-2xl font-semibold mb-4">Empower Your Business</h2>
             <p className="text-gray-700 mb-6">
-              Branding digital y soporte tecnológico para impulsar tu negocio consciente en línea.
+              Digital branding and tech support designed to elevate your conscious business and online presence.
             </p>
             <Link
-              href="/es/explora-empoderamiento-empresarial"
+              href="/explore-business-empowerment"
               className="inline-block px-6 py-3 bg-orange-500 text-white font-semibold rounded hover:bg-orange-600 transition"
             >
-              Explorar
+              Explore Business Empowerment
             </Link>
           </div>
         </div>

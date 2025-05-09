@@ -5,6 +5,6 @@ export const metadata = {
   description: 'Contáctate con Nelson Dario para servicios de coaching, diseño o empoderamiento espiritual.',
 };
 
-export default function ContactoPage(): JSX.Element {
+export default function ContactoPage() {
   return <ContactoClient />;
 }

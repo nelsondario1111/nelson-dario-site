@@ -4,7 +4,10 @@ import Link from 'next/link';
 
 export default function ExploreBusinessEmpowermentClientEs() {
   return (
-    <section className="text-center px-6 py-20 md:py-32 bg-gray-100">
+    <section
+      className="text-center px-6 py-20 md:py-32 bg-gray-100"
+      aria-label="Paquetes de Empoderamiento Empresarial"
+    >
       <div className="max-w-4xl mx-auto">
         <h1 className="text-4xl md:text-5xl font-bold mb-6">Paquetes de Empoderamiento Empresarial</h1>
         <p className="text-lg text-gray-700 mb-10">
@@ -14,11 +17,11 @@ export default function ExploreBusinessEmpowermentClientEs() {
         {/* 🚀 Kit de Lanzamiento de Marca */}
         <div className="mb-16 bg-white p-8 rounded-lg shadow-lg">
           <h2 className="text-3xl font-semibold mb-4">🚀 Kit de Lanzamiento de Marca</h2>
-          <p className="text-lg text-gray-700 leading-relaxed mb-4">
-            • Diseño de logotipo e identidad visual<br />
-            • Mensaje de marca y posicionamiento<br />
-            • Sitio web básico (hasta 5 páginas)
-          </p>
+          <ul className="text-left text-lg text-gray-700 leading-relaxed mb-4 list-disc list-inside">
+            <li>Diseño de logotipo e identidad visual</li>
+            <li>Mensaje de marca y posicionamiento</li>
+            <li>Sitio web básico (hasta 5 páginas)</li>
+          </ul>
           <p className="font-bold text-xl mb-2">$997 CAD</p>
           <p className="text-md text-gray-500 mb-4">
             Ideal para nuevos emprendedores que quieren lanzar una marca alineada y con impacto.
@@ -34,11 +37,11 @@ export default function ExploreBusinessEmpowermentClientEs() {
         {/* 🌍 Constructor de Presencia Online */}
         <div className="mb-16 bg-white p-8 rounded-lg shadow-lg">
           <h2 className="text-3xl font-semibold mb-4">🌍 Constructor de Presencia Online</h2>
-          <p className="text-lg text-gray-700 leading-relaxed mb-4">
-            • Diseño web completo (hasta 10 páginas)<br />
-            • Configuración SEO y analítica<br />
-            • 2 horas de integración con IA
-          </p>
+          <ul className="text-left text-lg text-gray-700 leading-relaxed mb-4 list-disc list-inside">
+            <li>Diseño web completo (hasta 10 páginas)</li>
+            <li>Configuración SEO y analítica</li>
+            <li>2 horas de integración con IA</li>
+          </ul>
           <p className="font-bold text-xl mb-2">$1,497 CAD</p>
           <p className="text-md text-gray-500 mb-4">
             Ideal para negocios establecidos que desean mejorar su presencia digital.
@@ -54,11 +57,11 @@ export default function ExploreBusinessEmpowermentClientEs() {
         {/* 🧠 Suite de Empoderamiento Digital */}
         <div className="mb-16 bg-white p-8 rounded-lg shadow-lg">
           <h2 className="text-3xl font-semibold mb-4">🧠 Suite de Empoderamiento Digital</h2>
-          <p className="text-lg text-gray-700 leading-relaxed mb-4">
-            • Chatbot con IA personalizado y automatizaciones<br />
-            • Portal de membresía<br />
-            • Coaching estratégico mensual (4 sesiones)
-          </p>
+          <ul className="text-left text-lg text-gray-700 leading-relaxed mb-4 list-disc list-inside">
+            <li>Chatbot con IA personalizado y automatizaciones</li>
+            <li>Portal de membresía</li>
+            <li>Coaching estratégico mensual (4 sesiones)</li>
+          </ul>
           <p className="font-bold text-xl mb-2">$2,997 CAD</p>
           <p className="text-md text-gray-500 mb-4">
             Ideal para negocios listos para escalar con IA y modelos de membresía.

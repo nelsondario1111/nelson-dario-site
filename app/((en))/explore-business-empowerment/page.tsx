@@ -5,6 +5,6 @@ export const metadata = {
   description: 'Launch or upgrade your conscious business with design, branding, and AI tools from Nelson Dario.',
 };
 
-export default function ExploreBusinessEmpowermentPage(): JSX.Element {
+export default function ExploreBusinessEmpowermentPage() {
   return <ExploreBusinessEmpowermentClient />;
 }

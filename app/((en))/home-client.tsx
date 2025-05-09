@@ -1,14 +1,25 @@
 'use client';
 
+import { useState } from 'react';
 import Link from 'next/link';
 
 export default function HomeClient() {
+  const [subscribed, setSubscribed] = useState(false);
+
+  const handleNewsletterSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setSubscribed(true);
+    setTimeout(() => setSubscribed(false), 5000);
+  };
+
   return (
-    <main>
+    <>
       {/* Hero Section */}
       <section
         className="relative min-h-screen bg-cover bg-center"
         style={{ backgroundImage: "url('/sunpicture.png')" }}
+        role="img"
+        aria-label="Sun background with spiritual theme"
       >
         <div className="absolute inset-0 bg-black opacity-50" />
         <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4 text-center text-white">
@@ -22,13 +33,13 @@ export default function HomeClient() {
             href="/services"
             className="bg-white text-black py-3 px-8 rounded-lg font-semibold hover:bg-gray-200 transition"
           >
-            Go
+            View Services
           </Link>
         </div>
       </section>
 
       {/* Empowerment Section */}
-      <section className="text-center py-20 bg-white px-6">
+      <section className="text-center py-20 bg-white px-6" aria-label="Empowerment Options">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-3xl font-bold mb-10">How I Can Help You</h2>
           <div className="grid gap-8 md:grid-cols-2">
@@ -61,34 +72,42 @@ export default function HomeClient() {
       </section>
 
       {/* Newsletter Section */}
-      <section className="bg-gray-100 py-16 px-6 text-center">
+      <section className="bg-gray-100 py-16 px-6 text-center" aria-label="Newsletter Signup">
         <div className="max-w-xl mx-auto">
           <h2 className="text-3xl font-bold mb-4">Subscribe to My Newsletter</h2>
           <p className="text-gray-700 mb-6">
             Get updates, tips, and tools to support your conscious journey – directly to your inbox.
           </p>
+
           <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              alert('Thank you for subscribing!');
-            }}
+            onSubmit={handleNewsletterSubmit}
             className="flex flex-col md:flex-row items-center justify-center gap-4"
+            aria-label="Newsletter form"
           >
             <input
+              name="email"
               type="email"
               placeholder="Your email address"
               className="w-full md:w-auto px-4 py-3 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-400"
               required
+              aria-label="Email address"
             />
             <button
               type="submit"
-              className="bg-orange-500 text-white px-6 py-3 rounded hover:bg-orange-600 transition"
+              disabled={subscribed}
+              className="bg-orange-500 text-white px-6 py-3 rounded hover:bg-orange-600 transition disabled:opacity-60"
             >
-              Subscribe
+              {subscribed ? 'Subscribed!' : 'Subscribe'}
             </button>
           </form>
+
+          {subscribed && (
+            <p className="mt-4 text-green-500 text-sm font-medium">
+              Thank you for subscribing!
+            </p>
+          )}
         </div>
       </section>
-    </main>
+    </>
   );
 }

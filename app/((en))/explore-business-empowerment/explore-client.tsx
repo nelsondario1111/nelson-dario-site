@@ -4,7 +4,10 @@ import Link from 'next/link';
 
 export default function ExploreBusinessEmpowermentClient() {
   return (
-    <section className="text-center px-6 py-20 md:py-32 bg-gray-100">
+    <section
+      className="text-center px-6 py-20 md:py-32 bg-gray-100"
+      aria-label="Explore Business Empowerment Packages"
+    >
       <div className="max-w-4xl mx-auto">
         <h1 className="text-4xl md:text-5xl font-bold mb-6">Business Empowerment Packages</h1>
         <p className="text-lg text-gray-700 mb-10">
@@ -14,11 +17,11 @@ export default function ExploreBusinessEmpowermentClient() {
         {/* 🚀 Brand Launch Kit */}
         <div className="mb-16 bg-white p-8 rounded-lg shadow-lg">
           <h2 className="text-3xl font-semibold mb-4">🚀 Brand Launch Kit</h2>
-          <p className="text-lg text-gray-700 leading-relaxed mb-4">
-            • Logo & visual identity design<br />
-            • Brand messaging & positioning<br />
-            • Basic website setup (up to 5 pages)
-          </p>
+          <ul className="text-left text-lg text-gray-700 leading-relaxed mb-4 list-disc list-inside">
+            <li>Logo & visual identity design</li>
+            <li>Brand messaging & positioning</li>
+            <li>Basic website setup (up to 5 pages)</li>
+          </ul>
           <p className="font-bold text-xl mb-2">$997 CAD</p>
           <p className="text-md text-gray-500 mb-4">
             Ideal for new entrepreneurs ready to launch an aligned, impactful brand.
@@ -34,11 +37,11 @@ export default function ExploreBusinessEmpowermentClient() {
         {/* 🌍 Online Presence Builder */}
         <div className="mb-16 bg-white p-8 rounded-lg shadow-lg">
           <h2 className="text-3xl font-semibold mb-4">🌍 Online Presence Builder</h2>
-          <p className="text-lg text-gray-700 leading-relaxed mb-4">
-            • Full website design (up to 10 pages)<br />
-            • SEO setup & analytics<br />
-            • 2 hours AI integration for automation
-          </p>
+          <ul className="text-left text-lg text-gray-700 leading-relaxed mb-4 list-disc list-inside">
+            <li>Full website design (up to 10 pages)</li>
+            <li>SEO setup & analytics</li>
+            <li>2 hours AI integration for automation</li>
+          </ul>
           <p className="font-bold text-xl mb-2">$1,497 CAD</p>
           <p className="text-md text-gray-500 mb-4">
             Ideal for established businesses seeking to elevate their online impact.
@@ -54,11 +57,11 @@ export default function ExploreBusinessEmpowermentClient() {
         {/* 🧠 Digital Empowerment Suite */}
         <div className="mb-16 bg-white p-8 rounded-lg shadow-lg">
           <h2 className="text-3xl font-semibold mb-4">🧠 Digital Empowerment Suite</h2>
-          <p className="text-lg text-gray-700 leading-relaxed mb-4">
-            • Custom AI chatbot & workflows<br />
-            • Membership portal setup<br />
-            • Monthly strategy coaching (4 calls)
-          </p>
+          <ul className="text-left text-lg text-gray-700 leading-relaxed mb-4 list-disc list-inside">
+            <li>Custom AI chatbot & workflows</li>
+            <li>Membership portal setup</li>
+            <li>Monthly strategy coaching (4 calls)</li>
+          </ul>
           <p className="font-bold text-xl mb-2">$2,997 CAD</p>
           <p className="text-md text-gray-500 mb-4">
             Ideal for businesses ready to scale with AI and membership models.

@@ -6,6 +6,6 @@ export const metadata = {
     'Explore Nelson Dario’s personalized coaching, conscious design, and spiritual empowerment service offerings.',
 };
 
-export default function ServicesPage(): JSX.Element {
+export default function ServicesPage() {
   return <ServicesClient />;
 }

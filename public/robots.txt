@@ -1,4 +1,14 @@
 User-agent: *
 Allow: /
 
+# Optional: prevent bots from crawling admin or preview areas (adjust as needed)
+Disallow: /admin/
+Disallow: /preview/
+
+# Optional: reduce crawl rate (helpful if site traffic grows)
+Crawl-delay: 10
+
+# Sitemaps for multilingual structure (update if you split them later)
 Sitemap: https://www.nelsondario.com/sitemap.xml
+# Sitemap: https://www.nelsondario.com/sitemap-en.xml
+# Sitemap: https://www.nelsondario.com/sitemap-es.xml

@@ -1,125 +1,103 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 
 export default function ContactoClient() {
-  const searchParams = useSearchParams();
-  const subjectFromQuery = searchParams.get('subject') || '';
-
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: '',
-  });
-
+  const [subject, setSubject] = useState('');
+  const [message, setMessage] = useState('');
   const [showConfirmation, setShowConfirmation] = useState(false);
+  const searchParams = useSearchParams();
 
   useEffect(() => {
-    if (subjectFromQuery) {
-      setFormData((prev) => ({ ...prev, subject: decodeURIComponent(subjectFromQuery) }));
+    const paramSubject = searchParams?.get('subject');
+    if (paramSubject) {
+      const decoded = decodeURIComponent(paramSubject);
+      setSubject(decoded);
+      setMessage(`Interesado en el paquete: ${decoded}\n\n`);
     }
-  }, [subjectFromQuery]);
+  }, [searchParams]);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setShowConfirmation(true);
-    setFormData({ name: '', email: '', subject: '', message: '' });
-    setTimeout(() => setShowConfirmation(false), 6000);
+    setTimeout(() => setShowConfirmation(false), 5000);
   };
 
   return (
-    <>
-      <section className="py-20 bg-gray-50 text-center">
-        <h1 className="text-4xl font-semibold mb-6">Contáctame</h1>
-        <p className="text-lg max-w-3xl mx-auto mb-6">
-          Estoy aquí para apoyarte en tu camino de transformación. Completa el siguiente formulario y te responderé lo antes posible.
+    <section
+      className="flex items-center justify-center px-6 py-20 md:py-32 bg-white text-center"
+      aria-label="Sección de contacto"
+    >
+      <div className="max-w-xl w-full">
+        <h1 className="text-4xl md:text-5xl font-bold mb-6">Contáctame</h1>
+        <p className="text-lg text-gray-700 mb-10">
+          Estoy aquí para ayudarte. Completa el formulario y me pondré en contacto contigo pronto.
         </p>
-      </section>
 
-      <section className="py-20">
-        <div className="max-w-3xl mx-auto bg-white p-8 rounded-lg shadow-lg">
-          <form onSubmit={handleSubmit}>
-            <div className="mb-6">
-              <label className="block text-sm font-semibold mb-2" htmlFor="name">
-                Nombre
-              </label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                className="w-full px-4 py-2 border border-gray-300 rounded-md"
-                required
-              />
-            </div>
+        <form
+          onSubmit={handleSubmit}
+          aria-label="Formulario de contacto"
+          className="space-y-6 text-left"
+        >
+          <div>
+            <label htmlFor="nombre" className="block text-sm font-medium text-gray-700 mb-1">
+              Nombre
+            </label>
+            <input
+              type="text"
+              id="nombre"
+              name="nombre"
+              required
+              className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500"
+            />
+          </div>
 
-            <div className="mb-6">
-              <label className="block text-sm font-semibold mb-2" htmlFor="email">
-                Correo Electrónico
-              </label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                className="w-full px-4 py-2 border border-gray-300 rounded-md"
-                required
-              />
-            </div>
+          <div>
+            <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+              Correo Electrónico
+            </label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+              className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500"
+            />
+          </div>
 
-            <div className="mb-6">
-              <label className="block text-sm font-semibold mb-2" htmlFor="subject">
-                Asunto
-              </label>
-              <input
-                type="text"
-                id="subject"
-                name="subject"
-                value={formData.subject}
-                onChange={handleChange}
-                className="w-full px-4 py-2 border border-gray-300 rounded-md"
-                required
-              />
-            </div>
+          <div>
+            <label htmlFor="mensaje" className="block text-sm font-medium text-gray-700 mb-1">
+              Mensaje
+            </label>
+            <textarea
+              id="mensaje"
+              name="mensaje"
+              required
+              rows={5}
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+              className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500"
+            />
+          </div>
 
-            <div className="mb-6">
-              <label className="block text-sm font-semibold mb-2" htmlFor="message">
-                Mensaje
-              </label>
-              <textarea
-                id="message"
-                name="message"
-                value={formData.message}
-                onChange={handleChange}
-                className="w-full px-4 py-2 border border-gray-300 rounded-md"
-                rows={4}
-                required
-              />
-            </div>
-
-            <button
-              type="submit"
-              className="w-full bg-orange-500 hover:bg-orange-600 text-white py-3 px-6 rounded-md font-semibold transition"
-            >
-              Enviar Mensaje
-            </button>
-          </form>
+          <button
+            type="submit"
+            disabled={showConfirmation}
+            className={`w-full bg-orange-500 hover:bg-orange-600 text-white py-3 px-6 rounded-md font-semibold transition ${
+              showConfirmation ? 'opacity-60 cursor-not-allowed' : ''
+            }`}
+          >
+            Enviar Mensaje
+          </button>
 
           {showConfirmation && (
-            <div className="mt-6 bg-green-100 text-green-800 px-6 py-4 rounded-md shadow-md transition duration-300">
-              ✅ ¡Gracias! Tu mensaje ha sido enviado con éxito.
-            </div>
+            <p className="text-green-500 text-sm mt-4">
+              ¡Gracias por tu mensaje! Te responderé pronto.
+            </p>
           )}
-        </div>
-      </section>
-    </>
+        </form>
+      </div>
+    </section>
   );
 }
