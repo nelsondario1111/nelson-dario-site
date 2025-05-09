@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import Image from 'next/image';
 
 export default function Footer() {
   const pathname = usePathname();
@@ -25,27 +26,31 @@ export default function Footer() {
 
   return (
     <footer className="bg-black text-white px-6 py-12 text-center">
-      <div className="max-w-5xl mx-auto space-y-8">
-        {/* Logo + Brand */}
+      <div className="max-w-6xl mx-auto space-y-10">
+        {/* Logo & Name */}
         <Link
           href={isSpanish ? '/es' : '/'}
-          className="flex items-center justify-center gap-2 text-2xl font-bold tracking-wide hover:text-yellow-500 transition"
+          className="flex items-center justify-center gap-2 text-2xl font-bold tracking-wide hover:text-orange-400 transition"
         >
-          <img src="/logob.png" alt="Nelson Dario Logo" className="h-8 w-auto" />
-          Nelson Dario
+          <Image src="/logob.png" alt="Nelson Dario Logo" width={32} height={32} />
+          <span className="text-white">Nelson Dario</span>
         </Link>
 
         {/* Navigation */}
         <nav className="flex flex-wrap justify-center gap-6 text-sm">
           {links.map(({ href, label }) => (
-            <Link key={href} href={href} className="hover:text-orange-400 transition">
+            <Link
+              key={href}
+              href={href}
+              className="nav-link text-gray-400 hover:text-orange-400"
+            >
               {label}
             </Link>
           ))}
         </nav>
 
         {/* Social Media */}
-        <div className="flex justify-center gap-6 mt-4">
+        <div className="flex justify-center gap-6 mt-4 text-sm">
           <a
             href="#"
             target="_blank"
@@ -76,7 +81,7 @@ export default function Footer() {
         </div>
 
         {/* Footer Bottom */}
-        <p className="text-sm text-gray-400">
+        <p className="text-sm text-gray-500">
           &copy; {currentYear} Nelson Dario. All rights reserved.
         </p>
       </div>
