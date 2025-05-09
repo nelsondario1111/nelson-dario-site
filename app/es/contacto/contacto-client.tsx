@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 
 export default function ContactoClient() {
-  const [subject, setSubject] = useState('');
   const [message, setMessage] = useState('');
   const [showConfirmation, setShowConfirmation] = useState(false);
   const searchParams = useSearchParams();
@@ -13,7 +12,6 @@ export default function ContactoClient() {
     const paramSubject = searchParams?.get('subject');
     if (paramSubject) {
       const decoded = decodeURIComponent(paramSubject);
-      setSubject(decoded);
       setMessage(`Interesado en el paquete: ${decoded}\n\n`);
     }
   }, [searchParams]);
@@ -32,7 +30,6 @@ export default function ContactoClient() {
       <div className="max-w-xl w-full">
         <h1 className="text-4xl md:text-5xl font-bold mb-6">Contáctame</h1>
 
-        {/* eslint-disable-next-line react/no-unescaped-entities */}
         <p className="text-lg text-gray-700 mb-10">
           Estoy aquí para ayudarte. Completa el formulario y me pondré en contacto contigo pronto.
         </p>

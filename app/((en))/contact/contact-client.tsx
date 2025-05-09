@@ -9,7 +9,6 @@ export default function ContactClient() {
   const [status, setStatus] = useState<'idle' | 'submitting' | 'submitted'>('idle');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
-  const [subject, setSubject] = useState('');
   const [submittedMessage, setSubmittedMessage] = useState('');
 
   useEffect(() => {
@@ -18,7 +17,6 @@ export default function ContactClient() {
 
     if (subjectParam) {
       const decoded = decodeURIComponent(subjectParam);
-      setSubject(decoded);
       setMessage(`Package of interest: ${decoded}\n\n`);
     }
 
@@ -52,9 +50,8 @@ export default function ContactClient() {
       <div className="max-w-xl w-full">
         <h1 className="text-4xl md:text-5xl font-bold mb-6">Contact Me</h1>
 
-        {/* eslint-disable-next-line react/no-unescaped-entities */}
         <p className="text-lg text-gray-700 mb-10">
-          I'm here to support your transformation. Send me a message and I'll respond as soon as possible.
+          I&apos;m here to support your transformation. Send me a message and I&apos;ll respond as soon as possible.
         </p>
 
         {submittedMessage && (
