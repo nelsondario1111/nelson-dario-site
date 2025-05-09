@@ -31,6 +31,8 @@ export default function ContactoClient() {
     >
       <div className="max-w-xl w-full">
         <h1 className="text-4xl md:text-5xl font-bold mb-6">Contáctame</h1>
+
+        {/* eslint-disable-next-line react/no-unescaped-entities */}
         <p className="text-lg text-gray-700 mb-10">
           Estoy aquí para ayudarte. Completa el formulario y me pondré en contacto contigo pronto.
         </p>

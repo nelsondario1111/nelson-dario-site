@@ -32,7 +32,7 @@ export default function ContactClient() {
     setStatus('submitting');
 
     try {
-      // Simulate form submission delay
+      // Simulate delay
       await new Promise((resolve) => setTimeout(resolve, 1000));
       setStatus('submitted');
       setEmail('');
@@ -51,8 +51,10 @@ export default function ContactClient() {
     >
       <div className="max-w-xl w-full">
         <h1 className="text-4xl md:text-5xl font-bold mb-6">Contact Me</h1>
+
+        {/* eslint-disable-next-line react/no-unescaped-entities */}
         <p className="text-lg text-gray-700 mb-10">
-          I&apos;m here to support your transformation. Send me a message and I&apos;ll respond as soon as possible.
+          I'm here to support your transformation. Send me a message and I'll respond as soon as possible.
         </p>
 
         {submittedMessage && (
