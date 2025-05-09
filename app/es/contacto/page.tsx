@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import ContactoClient from './contacto-client';
 
 export const metadata = {
@@ -6,5 +7,9 @@ export const metadata = {
 };
 
 export default function ContactoPage() {
-  return <ContactoClient />;
+  return (
+    <Suspense fallback={<div className="text-center py-20 text-gray-500">Cargando...</div>}>
+      <ContactoClient />
+    </Suspense>
+  );
 }

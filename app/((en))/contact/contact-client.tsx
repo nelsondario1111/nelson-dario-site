@@ -25,7 +25,7 @@ export default function ContactClient() {
     setStatus('submitting');
 
     try {
-      // Simulated delay (replace with real submission logic)
+      // Simulated delay (replace with real backend logic later)
       await new Promise((resolve) => setTimeout(resolve, 1000));
 
       setStatus('submitted');
