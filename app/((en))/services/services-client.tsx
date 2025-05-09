@@ -25,7 +25,7 @@ export default function ServicesClient() {
               href="/explore-life-empowerment"
               className="inline-block px-6 py-3 bg-orange-500 text-white font-semibold rounded hover:bg-orange-600 transition"
             >
-              Explore Life Empowerment
+              Explore
             </Link>
           </div>
 
@@ -39,7 +39,7 @@ export default function ServicesClient() {
               href="/explore-business-empowerment"
               className="inline-block px-6 py-3 bg-orange-500 text-white font-semibold rounded hover:bg-orange-600 transition"
             >
-              Explore Business Empowerment
+              Explore
             </Link>
           </div>
         </div>
