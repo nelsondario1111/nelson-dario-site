@@ -42,7 +42,7 @@ export const metadata = {
     card: 'summary_large_image',
     title: 'Nelson Dario',
     description: 'Awakening | Empowerment | Evolution.',
-    creator: '@yourhandle', // Replace with your actual Twitter handle or remove
+    creator: '@yourhandle',
     images: ['/og-image.jpg'],
   },
 };
@@ -51,7 +51,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body className="flex flex-col min-h-screen bg-white text-black">
-        <Header key="en" />
+        <Header lang="en" />
         <main className="flex-grow">{children}</main>
         <Footer />
       </body>

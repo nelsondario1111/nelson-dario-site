@@ -1,11 +1,11 @@
-import HomeClient from './home-client';
+import HomeClientEn from './home-client';
 
 export const metadata = {
   title: 'Home',
   description:
-    'Welcome to Nelson Dario – services and insights to awaken, empower, and evolve your life and business.',
+    'Welcome to Nelson Dario – services and tools to support your awakening, empowerment, and evolution in life and business.',
 };
 
-export default function HomePage() {
-  return <HomeClient />;
+export default function HomePageEn() {
+  return <HomeClientEn />;
 }
